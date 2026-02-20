@@ -21,10 +21,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #root {
   width: 100%;
+  overflow-x: hidden;
 }
 
 @theme {
@@ -42,10 +44,39 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
+    @apply px-4 py-2 md:px-6 md:py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
   }
 
   .card {
     @apply glass rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:translate-y-[-8px];
   }
+
+  .section-padding {
+    @apply py-12 md:py-24;
+  }
+
+  .heading-xl {
+    @apply text-5xl md:text-8xl font-black leading-tight tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-5xl font-bold leading-tight;
+  }
+
+  .glass-premium {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-500/20 rounded-full border-2 border-slate-950 hover:bg-indigo-500/40 transition-colors;
 }

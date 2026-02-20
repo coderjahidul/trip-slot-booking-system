@@ -2,24 +2,24 @@ import React from 'react';
 
 const About = () => {
     return (
-        <section id="about" className="py-24 relative overflow-hidden">
+        <section id="about" className="py-12 md:py-24 relative overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    <div className="relative space-y-8 animate-in fade-in slide-in-from-left-8 duration-700">
-                        <div className="inline-block px-4 py-2 glass rounded-lg border border-white/10 text-indigo-400 font-bold text-sm tracking-widest uppercase mb-4">
+                <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <div className="relative space-y-6 md:space-y-8 animate-in fade-in slide-in-from-left-8 duration-700">
+                        <div className="inline-block px-4 py-2 glass rounded-lg border border-white/10 text-indigo-400 font-bold text-xs md:text-sm tracking-widest uppercase mb-4">
                             About Our Agency
                         </div>
-                        <h2 className="text-5xl font-bold leading-tight">
-                            Leading The Way In <br />
+                        <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                            Leading The Way In <br className="hidden md:block" />
                             <span className="text-indigo-400">Travel & Adventure.</span>
                         </h2>
-                        <p className="text-slate-400 text-lg leading-relaxed">
+                        <p className="text-slate-400 text-base md:text-lg leading-relaxed">
                             Based in the heart of Cumilla, Travel Group of Cumilla (TGC) has been a pioneer in creating
                             unforgettable travel experiences. We believe that travel is not just about visiting places,
                             but about creating stories that last a lifetime.
                         </p>
 
-                        <div className="grid grid-cols-2 gap-8 pt-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 pt-4">
                             <div className="space-y-3">
                                 <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center border border-indigo-500/20">
                                     <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
@@ -36,17 +36,17 @@ const About = () => {
                             </div>
                         </div>
 
-                        <button className="flex items-center gap-3 text-white font-bold group pt-4">
+                        <button className="flex items-center gap-3 text-white font-bold group pt-4 text-sm md:text-base">
                             Learn More About Us
-                            <div className="w-10 h-10 glass rounded-full flex items-center justify-center group-hover:bg-indigo-500 transition-all border border-white/10 group-hover:border-indigo-500">
-                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <div className="w-8 h-8 md:w-10 md:h-10 glass rounded-full flex items-center justify-center group-hover:bg-indigo-500 transition-all border border-white/10 group-hover:border-indigo-500">
+                                <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </div>
                         </button>
                     </div>
 
-                    <div className="relative animate-in fade-in slide-in-from-right-8 duration-700">
-                        <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/10 transform hover:scale-[1.02] transition-all duration-700">
-                            <img src="/images/sylhet.png" alt="Travel Group" className="w-full h-full object-cover" />
+                    <div className="relative animate-in fade-in slide-in-from-right-8 duration-700 mt-12 lg:mt-0">
+                        <div className="relative z-10 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/10 transform hover:scale-[1.02] transition-all duration-700">
+                            <img src="/images/sylhet.png" alt="Travel Group" className="w-full h-full object-cover aspect-video lg:aspect-auto" />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
                         </div>
 
@@ -54,9 +54,9 @@ const About = () => {
                         <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full -z-10 animate-pulse" />
                         <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-purple-500/10 blur-3xl rounded-full -z-10 animate-pulse" />
 
-                        <div className="absolute -bottom-8 -right-8 glass p-6 rounded-2xl border border-white/20 z-20 hidden md:block animate-bounce-slow">
-                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Experience</p>
-                            <p className="text-4xl font-black text-white">10+ Years</p>
+                        <div className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 glass p-4 md:p-6 rounded-2xl border border-white/20 z-20 hidden sm:block animate-bounce-slow">
+                            <p className="text-[10px] md:text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Experience</p>
+                            <p className="text-2xl md:text-4xl font-black text-white">10+ Years</p>
                         </div>
                     </div>
                 </div>
