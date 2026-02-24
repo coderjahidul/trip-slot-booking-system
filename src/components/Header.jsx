@@ -1,6 +1,19 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import {
+    Home,
+    Info,
+    Map,
+    Image as ImageIcon,
+    Users,
+    Mail,
+    ClipboardList,
+    LogOut,
+    Menu,
+    X,
+    User
+} from 'lucide-react';
 
 const Header = () => {
     const { user, logout } = useAuth();
@@ -47,13 +60,12 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: 'Home', path: '/', isLink: true, icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg> },
-        { name: 'About', path: '#about', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-        { name: 'Tours', path: '#tours', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-        { name: 'Gallery', path: '#gallery', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg> },
-        { name: 'Team', path: '#team', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg> },
-        { name: 'Contact', path: '#contact', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> },
-        { name: 'My Bookings', path: '/my-bookings', isLink: true, icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01" /></svg> },
+        { name: 'Home', path: '/', isLink: true, icon: <Home className="w-5 h-5" /> },
+        { name: 'About', path: '#about', icon: <Info className="w-5 h-5" /> },
+        { name: 'Tours', path: '#tours', icon: <Map className="w-5 h-5" /> },
+        { name: 'Gallery', path: '#gallery', icon: <ImageIcon className="w-5 h-5" /> },
+        { name: 'Team', path: '#team', icon: <Users className="w-5 h-5" /> },
+        { name: 'Contact', path: '#contact', icon: <Mail className="w-5 h-5" /> },
     ];
 
     return (
@@ -100,24 +112,29 @@ const Header = () => {
 
                     {user ? (
                         <div className="flex items-center gap-4 pl-4 border-l border-white/10">
-                            <div className="flex flex-col items-end">
-                                <span className="text-sm font-bold">{user.name}</span>
-                                <span className="text-[10px] text-slate-500 uppercase tracking-widest">Traveler</span>
-                            </div>
+                            <Link to="/dashboard" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+                                <div className="flex flex-col items-end">
+                                    <span className="text-sm font-bold">{user.name || 'Jahidul Islam'}</span>
+                                    <span className="text-[10px] text-slate-500 uppercase tracking-widest">Traveler</span>
+                                </div>
+                                <div className="w-10 h-10 rounded-full border-2 border-indigo-500/20 overflow-hidden">
+                                    <img
+                                        src={user.avatar || 'https://avatars.githubusercontent.com/u/79420197?v=4'}
+                                        alt={user.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </Link>
                             <button
                                 onClick={handleLogout}
                                 className="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-red-500/10 group transition-all"
                                 title="Logout"
                             >
-                                <svg className="w-5 h-5 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                </svg>
+                                <LogOut className="w-5 h-5 group-hover:text-red-500 transition-colors" />
                             </button>
                         </div>
                     ) : (
-                        <Link to="/login" className="px-5 py-2 glass rounded-full hover:bg-white/10 transition-all border border-white/20">
-                            Login
-                        </Link>
+                        null
                     )}
                 </div>
 
@@ -126,13 +143,7 @@ const Header = () => {
                     className="lg:hidden z-50 p-2 text-white"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {isMenuOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        )}
-                    </svg>
+                    {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                 </button>
 
                 {/* Mobile Menu Overlay */}
@@ -157,8 +168,8 @@ const Header = () => {
                         );
 
                         const commonClasses = `group relative flex items-center gap-4 text-xl font-medium transition-all duration-500 w-full py-3 px-4 rounded-xl ${isActive
-                                ? 'text-indigo-400 bg-indigo-500/10'
-                                : 'text-slate-300 hover:text-indigo-400 hover:bg-white/5'
+                            ? 'text-indigo-400 bg-indigo-500/10'
+                            : 'text-slate-300 hover:text-indigo-400 hover:bg-white/5'
                             }`;
 
                         return link.isLink ? (
@@ -209,25 +220,12 @@ const Header = () => {
                                 onClick={handleLogout}
                                 className="w-full py-4 glass rounded-xl text-red-400 hover:bg-red-500/10 transition-all flex items-center justify-center gap-3 font-semibold"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                </svg>
+                                <LogOut className="w-5 h-5" />
                                 Logout
                             </button>
                         </div>
                     ) : (
-                        <Link
-                            to="/login"
-                            className="w-full py-4 bg-indigo-600 text-white rounded-xl text-center hover:bg-indigo-700 transition-all font-semibold shadow-lg shadow-indigo-500/20"
-                            onClick={() => setIsMenuOpen(false)}
-                            style={{
-                                transitionDelay: isMenuOpen ? `${navLinks.length * 50 + 100}ms` : '0ms',
-                                transform: isMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
-                                opacity: isMenuOpen ? 1 : 0
-                            }}
-                        >
-                            Login
-                        </Link>
+                        null
                     )}
                 </div>
             </div>

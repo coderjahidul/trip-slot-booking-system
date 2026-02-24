@@ -5,8 +5,12 @@ import BookingSuccess from './pages/BookingSuccess';
 import MyBookings from './pages/MyBookings';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import UserDashboard from './pages/UserDashboard';
+import UserSettings from './pages/UserSettings';
+import BookingDetails from './pages/BookingDetails';
 import { useAuth } from './context/AuthContext';
 import AppLayout from './layouts/AppLayout';
+import UserLayout from './layouts/UserLayout';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -32,12 +36,38 @@ function App() {
         <Route path="/tour/:id" element={<AppLayout><TourDetails /></AppLayout>} />
         <Route path="/booking-success" element={<AppLayout><BookingSuccess /></AppLayout>} />
         <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user-settings"
+          element={
+            <ProtectedRoute>
+              <UserSettings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/my-bookings"
           element={
             <ProtectedRoute>
-              <AppLayout>
+              <UserLayout>
                 <MyBookings />
-              </AppLayout>
+              </UserLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-bookings/:id"
+          element={
+            <ProtectedRoute>
+              <UserLayout>
+                <BookingDetails />
+              </UserLayout>
             </ProtectedRoute>
           }
         />
