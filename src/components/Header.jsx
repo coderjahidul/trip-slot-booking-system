@@ -2,7 +2,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const Navbar = () => {
+const Header = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -235,4 +235,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Header;
