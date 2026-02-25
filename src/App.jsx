@@ -11,6 +11,12 @@ import BookingDetails from './pages/BookingDetails';
 import { useAuth } from './context/AuthContext';
 import AppLayout from './layouts/AppLayout';
 import UserLayout from './layouts/UserLayout';
+import AdminLayout from './layouts/AdminLayout';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminUsers from './pages/admin/Users';
+import AdminRoles from './pages/admin/Roles';
+import AdminTrips from './pages/admin/Trips';
+import AdminSettings from './pages/admin/Settings';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -71,6 +77,23 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Admin Routes */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="roles" element={<AdminRoles />} />
+          <Route path="trips" element={<AdminTrips />} />
+          <Route path="settings" element={<AdminSettings />} />
+        </Route>
       </Routes>
     </Router>
   );
