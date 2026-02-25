@@ -16,6 +16,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AdminUsers from './pages/admin/Users';
 import AdminRoles from './pages/admin/Roles';
 import AdminTrips from './pages/admin/Trips';
+import AdminTripDetails from './pages/admin/TripDetails';
 import AdminSettings from './pages/admin/Settings';
 
 // Protected Route Component
@@ -92,6 +93,7 @@ function App() {
           <Route path="users" element={<AdminUsers />} />
           <Route path="roles" element={<AdminRoles />} />
           <Route path="trips" element={<AdminTrips />} />
+          <Route path="trips/:id" element={<AdminTripDetails />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
