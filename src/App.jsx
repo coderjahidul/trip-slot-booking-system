@@ -18,6 +18,7 @@ import AdminRoles from './pages/admin/Roles';
 import AdminTrips from './pages/admin/Trips';
 import AdminTripDetails from './pages/admin/TripDetails';
 import AdminSettings from './pages/admin/Settings';
+import AdminOfficeExpenses from './pages/admin/OfficeExpenses';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -94,6 +95,7 @@ function App() {
           <Route path="roles" element={<AdminRoles />} />
           <Route path="trips" element={<AdminTrips />} />
           <Route path="trips/:id" element={<AdminTripDetails />} />
+          <Route path="office-expenses" element={<AdminOfficeExpenses />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>

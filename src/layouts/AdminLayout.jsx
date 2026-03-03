@@ -15,13 +15,15 @@ import {
     X,
     Bell,
     ExternalLink,
-    Search
+    Search,
+    Banknote
 } from 'lucide-react';
 
 const AdminLayout = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(true);
+    const [isFinancialsMenuOpen, setIsFinancialsMenuOpen] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const menuItems = [
@@ -45,6 +47,16 @@ const AdminLayout = () => {
             name: 'Trips',
             path: '/admin/trips',
             icon: <Map className="w-5 h-5" />
+        },
+        {
+            name: 'Financials',
+            icon: <Banknote className="w-5 h-5" />,
+            hasSubmenu: true,
+            isOpen: isFinancialsMenuOpen,
+            toggle: () => setIsFinancialsMenuOpen(!isFinancialsMenuOpen),
+            submenu: [
+                { name: 'Office Expenses', path: '/admin/office-expenses', icon: <Banknote className="w-4 h-4" /> },
+            ]
         },
         {
             name: 'Settings',

@@ -1,13 +1,37 @@
-import React from 'react';
-import { LayoutDashboard, Users, Map, Settings, TrendingUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { LayoutDashboard, Users, Map, Settings, TrendingUp, Banknote, DollarSign } from 'lucide-react';
 
 const AdminDashboard = () => {
-    const stats = [
-        { label: 'Total Bookings', value: '1,284', icon: <LayoutDashboard className="w-6 h-6" />, color: 'bg-blue-500/20 text-blue-400' },
-        { label: 'Active Guides', value: '12', icon: <Users className="w-6 h-6" />, color: 'bg-green-500/20 text-green-400' },
-        { label: 'Total Trips', value: '45', icon: <Map className="w-6 h-6" />, color: 'bg-purple-500/20 text-purple-400' },
-        { label: 'Revenue', value: '$45,200', icon: <TrendingUp className="w-6 h-6" />, color: 'bg-orange-500/20 text-orange-400' },
-    ];
+    const [stats, setStats] = useState([]);
+
+    useEffect(() => {
+        // Fetch Trips
+        const savedTrips = JSON.parse(localStorage.getItem('tgc_trips') || '[]');
+        // Fetch Office Expenses
+        const savedOfficeExp = JSON.parse(localStorage.getItem('tgc_office_expenses') || '[]');
+
+        // Calculate Revenue
+        const totalRevenue = savedTrips.reduce((sum, trip) => sum + (trip.bookings * trip.price), 0);
+
+        // Calculate Trip Expenses
+        const totalTripExp = savedTrips.reduce((sum, trip) => {
+            const tripExp = trip.expenses?.reduce((s, e) => s + e.amount, 0) || 0;
+            return sum + tripExp;
+        }, 0);
+
+        // Calculate Office Expenses
+        const totalOfficeExp = savedOfficeExp.reduce((sum, exp) => sum + exp.amount, 0);
+
+        const totalExpenditure = totalTripExp + totalOfficeExp;
+        const netProfit = totalRevenue - totalExpenditure;
+
+        setStats([
+            { label: 'Active Bookings', value: savedTrips.reduce((sum, t) => sum + t.bookings, 0).toLocaleString(), icon: <LayoutDashboard className="w-6 h-6" />, color: 'bg-blue-500/20 text-blue-400' },
+            { label: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, icon: <TrendingUp className="w-6 h-6" />, color: 'bg-green-500/20 text-green-400' },
+            { label: 'Expenditure', value: `$${totalExpenditure.toLocaleString()}`, icon: <Banknote className="w-6 h-6" />, color: 'bg-orange-500/20 text-orange-400' },
+            { label: 'Net Profit', value: `$${netProfit.toLocaleString()}`, icon: <DollarSign className="w-6 h-6" />, color: 'bg-indigo-500/20 text-indigo-400' },
+        ]);
+    }, []);
 
     return (
         <div className="space-y-8">
