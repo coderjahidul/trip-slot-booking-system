@@ -20,10 +20,12 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
             const sections = ['about', 'tours', 'gallery', 'team', 'contact'];
             const scrollPosition = window.scrollY + 100;
 
@@ -69,7 +71,12 @@ const Header = () => {
     ];
 
     return (
-        <nav className={`sticky top-0 z-50 transition-all duration-300 ${isMenuOpen ? 'bg-slate-950 border-transparent' : 'glass border-b border-white/10'} px-6 py-4`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isMenuOpen
+            ? 'bg-slate-950 border-transparent'
+            : isScrolled
+                ? 'bg-slate-900/90 backdrop-blur-md border-b border-white/5 py-2.5'
+                : 'bg-white/5 backdrop-blur-sm border-b border-white/5 py-4'
+            } px-6`}>
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/" className="flex items-center gap-2 group z-50">
                     <span className="text-3xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">TGC</span>
