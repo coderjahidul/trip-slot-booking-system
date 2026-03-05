@@ -141,7 +141,14 @@ const Header = () => {
                             </button>
                         </div>
                     ) : (
-                        null
+                        <div className="flex items-center gap-4 pl-4 border-l border-white/10">
+                            <Link
+                                to="/login"
+                                className="text-slate-300 hover:text-white transition-colors font-semibold"
+                            >
+                                Login
+                            </Link>
+                        </div>
                     )}
                 </div>
 
@@ -232,7 +239,29 @@ const Header = () => {
                             </button>
                         </div>
                     ) : (
-                        null
+                        <div
+                            className="flex flex-col items-center gap-4 pt-6 border-t border-white/10 w-full transition-all duration-500"
+                            style={{
+                                transitionDelay: isMenuOpen ? `${navLinks.length * 50 + 100}ms` : '0ms',
+                                transform: isMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
+                                opacity: isMenuOpen ? 1 : 0
+                            }}
+                        >
+                            <Link
+                                to="/login"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="w-full py-4 text-center text-slate-300 hover:text-white font-semibold"
+                            >
+                                Log In
+                            </Link>
+                            <Link
+                                to="/register"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold transition-all text-center shadow-lg shadow-indigo-500/20"
+                            >
+                                Create Account
+                            </Link>
+                        </div>
                     )}
                 </div>
             </div>
